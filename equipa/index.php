@@ -203,28 +203,41 @@ error_reporting(0);
                 <div class="contact__inputs grid">
                     <div class="contact__content">
                         <label for="name" class="content__label">Nome</label>
-                        <input type="text" name="name" class="contact__input" />
+                        <input type="text" name="name" class="contact__input" required/>
                     </div>
 
                     <div class="contact__content">
                         <label for="email" class="content__label">Email</label>
-                        <input type="text" name="email" class="contact__input" />
+                        <input type="email" name="email" class="contact__input" required/>
                     </div>
                 </div>
 
 
                 <div class="contact__content">
                     <label for="message" class="content__label">Mensagem</label>
-                    <textarea name="message" rows="7" class="contact__input"></textarea>
+                    <textarea name="message" rows="7" class="contact__input"required></textarea>
                 </div>
 
                 <div>
                     <input type="submit" name="submit" value="Enviar mensagem" class="button button--flex">
                 </div>
             </form>
+            <script>
+                document.getElementById("contactForm").addEventListener("submit", function(event) {
+                    const name = document.querySelector("input[name='name']").value.trim();
+                    const email = document.querySelector("input[name='email']").value.trim();
+                    const message = document.querySelector("textarea[name='message']").value.trim();
+
+                    if (!name || !email || !message) {
+                        alert("Please fill in all required fields.");
+                        event.preventDefault();  // Prevent form submission
+                    }
+                });
+            </script>
         </div>
     </section>
 </main>
+
 
 <!--================== Footer ===============-->
 <footer class="footer">
