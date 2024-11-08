@@ -97,12 +97,12 @@ error_reporting(0);
                     </svg>
                 </div>
                 <div class="home__data">
-                    <h1 class="home__title">Olá, nós somos <a href=""></a> </h1>
+                    <h1 class="home__title">Olá, nós somos a CleenIncubators<a href=""></a> </h1>
                     <h3 class="home__subtitle">
-                        Equipa Especializada de incubadoras
+                    Empresa de Consultoria 
                     </h3>
                     <p class="home__description">
-                        O nosso objetivo é fornecer serviços de manuntenção de incubadoras
+                    Nosso objetivo é encontrar, para cada cliente, um ambiente que reflita sua cultura, suporte seu crescimento e otimize suas operações.
 
                     </p>
                     <a href="#contact" class="button button--flex">
@@ -137,7 +137,7 @@ error_reporting(0);
 
             <div class="about__data">
                 <p class="about__description">
-                    Apresentamos a XXX, uma equipa formada em 1º de outubro de 2024, dedicada a um propósito essencial: a manutenção de incubadoras. Com uma abordagem inovadora e um profundo compromisso com a qualidade e a segurança, nossa missão é garantir que essas máquinas vitais funcionem de maneira eficiente e confiável, assegurando que os recém-nascidos mais vulneráveis recebam o suporte necessário para o início da vida.
+                A CleenIncubators uma empresa intermediária especializada em conectar empresas com escritórios que atendam a necessidades e características específicas. Ajudamos a otimizar o processo de busca, seleção e locação de espaços comerciais que atendam aos requisitos de cada cliente, promovendo uma experiência personalizada e eficiente.
                 </p>
             </div>
 
