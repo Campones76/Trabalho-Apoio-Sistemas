@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Redirect to a dashboard or home page after successful login
                 echo "Login successful! Welcome, " . $nome;
-                header("Location: ../../index.php"); // Uncomment to redirect the user to a dashboard page
+                header("Location: ../../index.php");
                 exit();
             } else {
                 echo "Incorrect password.";
