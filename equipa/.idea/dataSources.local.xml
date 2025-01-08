@@ -18,7 +18,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="cleenincubatores@localhost" uuid="064f0e08-70ac-45b5-9fb6-db51698262d7">
+    <data-source name="cleenincubators@localhost" uuid="064f0e08-70ac-45b5-9fb6-db51698262d7">
       <database-info product="MySQL" version="5.5.5-10.4.21-MariaDB" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MARIADB" exact-version="10.4.21" exact-driver-version="8.2">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

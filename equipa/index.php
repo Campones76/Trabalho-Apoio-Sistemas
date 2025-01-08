@@ -20,7 +20,7 @@ error_reporting(0);
 ?>
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="#" class="nav__logo">Engenheiros sem fronteiras</a>
+        <a href="#" class="nav__logo">CleenIncubators</a>
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list grid">
                 <li class="nav__item">
@@ -91,7 +91,7 @@ error_reporting(0);
                                     class="home__blob-img"
                                     x="-79"
                                     y="-46"
-                                    xlink:href="assets/img/gabi1.jpg"
+                                    xlink:href="assets/img/gabi2.jpg"
                             />
                         </g>
                     </svg>
@@ -133,7 +133,7 @@ error_reporting(0);
         <span class="section__subtitle">Introdução </span>
 
         <div class="about__container container grid">
-            <img src="assets\img\inc.jpg" alt="" class="about__img" />
+            <img src="assets\img\inc1.jpg" alt="" class="about__img" />
 
             <div class="about__data">
                 <p class="about__description">
@@ -152,6 +152,12 @@ error_reporting(0);
         </div>
         </div>
         </div>
+        <a href="backend/Dashboard/add/addBusiness.php" class="nav__link">
+            <i class="uil uil-sign-in-alt nav__icon"></i>Add Business
+        </a>
+        <a href="backend/Dashboard/search/searchBusinesses.php" class="nav__link">
+            <i class="uil uil-sign-in-alt nav__icon"></i>Search Business
+        </a>
     </section>
 
 
@@ -210,6 +216,11 @@ error_reporting(0);
                         <label for="email" class="content__label">Email</label>
                         <input type="email" name="email" class="contact__input" required/>
                     </div>
+
+                    <div class="contact__content">
+                        <label for="phone" class="content__label">Telemóvel</label>
+                        <input type="tel" name="phone" class="contact__input" placeholder="+351 928******" required/>
+                    </div>
                 </div>
 
 
@@ -226,6 +237,7 @@ error_reporting(0);
                 document.getElementById("contactForm").addEventListener("submit", function(event) {
                     const name = document.querySelector("input[name='name']").value.trim();
                     const email = document.querySelector("input[name='email']").value.trim();
+                    const phone = document.querySelector("input[name='phone']").value.trim();
                     const message = document.querySelector("textarea[name='message']").value.trim();
 
                     if (!name || !email || !message) {
@@ -237,6 +249,7 @@ error_reporting(0);
         </div>
     </section>
 </main>
+
 
 
 <!--================== Footer ===============-->

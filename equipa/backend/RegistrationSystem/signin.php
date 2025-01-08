@@ -24,32 +24,38 @@
 
 </body>
 </html>
+
 <?php
 session_start(); // Start the session
-require '/Applications/XAMPP/xamppfiles/htdocs/equipa/backend/Util/db_connection.php';
+require '/Applications/XAMPP/xamppfiles/htdocs/equipa/backend/Util/db_connection.php'; // Include PDO connection
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Database connection
-
     // Sanitize user input
-    $email = $conn->real_escape_string($_POST['email']);
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Query to get the user's data based on the provided email
-    $sql = "SELECT id, nome, password FROM users WHERE email = ?";
+    try {
+        // Query to get the user's data based on the provided email
+        $sql = "SELECT id, nome, password FROM users WHERE email = :email";
 
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("s", $email);
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+
+        // Bind the parameter using bindParam
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         // Execute the statement
         $stmt->execute();
 
-        // Bind the result variables
-        $stmt->bind_result($id, $nome, $hashed_password);
+        // Check if a user with that email exists
+        if ($stmt->rowCount() > 0) {
+            // Fetch the result
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id = $user['id'];
+            $nome = $user['nome'];
+            $hashed_password = $user['password'];
 
-        // Fetch the result (check if a user with that email exists)
-        if ($stmt->fetch()) {
             // Verify the password
             if (password_verify($password, $hashed_password)) {
                 // Password is correct, start the session and store user data
@@ -66,14 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "No user found with that email address.";
         }
-
-        // Close statement
-        $stmt->close();
-    } else {
-        echo "Error preparing the statement: " . $conn->error;
+    } catch (PDOException $e) {
+        // Catch any PDO-related errors
+        echo "Error: " . $e->getMessage();
     }
-
-    // Close connection
-    $conn->close();
 }
 ?>

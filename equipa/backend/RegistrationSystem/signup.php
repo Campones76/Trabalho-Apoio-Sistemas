@@ -24,57 +24,56 @@
     <input type="password" id="password" name="password" required><br><br>
 
     <button type="submit">Sign Up</button>
-    <br>
-    <br>
+    <br><br>
     <a href="signin.php">Já és cliente?</a>
 
 </form>
 
 </body>
 </html>
+
 <?php
-require '/Applications/XAMPP/xamppfiles/htdocs/equipa/backend/Util/db_connection.php';
+require '/Applications/XAMPP/xamppfiles/htdocs/equipa/backend/Util/db_connection.php'; // Make sure this is pointing to the correct PDO connection
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Database connection
     // Sanitize user input
-    $nome = $conn->real_escape_string($_POST['nome']);
-    $telefone = $conn->real_escape_string($_POST['phone_number']);
-    $email = $conn->real_escape_string($_POST['email']);
+    $nome = $_POST['nome'];
+    $telefone = $_POST['phone_number'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
-    $admin=0;
-
-
+    $admin = 0;
 
     // Hash the password using bcrypt
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Prepare SQL statement
-    $sql = "INSERT INTO users (admin, nome, telefone, email, password) VALUES (?, ?, ?, ?, ?)";
+    try {
+        // Prepare SQL statement with named placeholders
+        $sql = "INSERT INTO users (admin, nome, telefone, email, password) VALUES (:admin, :nome, :telefone, :email, :password)";
 
-    // Using prepared statements to avoid SQL injection
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("issss", $admin,$nome, $telefone, $email, $hashed_password);
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+
+        // Bind the parameters
+        $stmt->bindParam(':admin', $admin, PDO::PARAM_INT);
+        $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindParam(':telefone', $telefone, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
 
         // Execute the statement
         if ($stmt->execute()) {
             echo "Sign up successful!";
         } else {
-            echo "Error: " . $stmt->error;
-            echo $telefone;
+            echo "Error: Unable to execute the statement.";
         }
-
-        // Close statement and connection
-        $stmt->close();
-    } else {
-        echo "Error preparing the statement: " . $conn->error;
+    } catch (PDOException $e) {
+        // Catch any PDO-related errors
+        echo "Error: " . $e->getMessage();
     }
-
-    $conn->close();
 }
-
 ?>
+
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
 <script>
     const input = document.querySelector("#phone");
@@ -82,6 +81,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
     });
 </script>
-
-
-
