@@ -8,11 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->beginTransaction();
 
         // Your database operations here
-        $stmt = $conn->prepare("INSERT INTO businesses (name, description, country, city, latitude, longitude, cost_of_living, local_taxes)
-            VALUES (:name, :description, :country, :city, :latitude, :longitude, :cost_of_living, :local_taxes)");
+        $stmt = $conn->prepare("INSERT INTO businesses (name, description, tele, country, city, latitude, longitude, cost_of_living, local_taxes)
+            VALUES (:name, :description, :tele, :country, :city, :latitude, :longitude, :cost_of_living, :local_taxes)");
         $stmt->execute([
             ':name' => $_POST['business_name'],
             ':description' => $_POST['business_description'] ?? null,
+            ':tele' => $_POST['tele'],
             ':country' => $_POST['country'],
             ':city' => $_POST['city'],
             ':latitude' => $_POST['latitude'],

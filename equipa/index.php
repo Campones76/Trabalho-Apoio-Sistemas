@@ -152,10 +152,10 @@ error_reporting(0);
         </div>
         </div>
         </div>
-        <a href="backend/Dashboard/add/addBusiness.php" class="nav__link">
+        <a href="frontend/Dashboard/add/addBusiness.php" class="nav__link">
             <i class="uil uil-sign-in-alt nav__icon"></i>Add Business
         </a>
-        <a href="backend/Dashboard/search/searchBusinesses.php" class="nav__link">
+        <a href="frontend/Dashboard/search/searchBusinesses.php" class="nav__link">
             <i class="uil uil-sign-in-alt nav__icon"></i>Search Business
         </a>
     </section>

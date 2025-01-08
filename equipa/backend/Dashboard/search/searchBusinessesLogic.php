@@ -23,10 +23,6 @@ $query = "
 $params = [];
 
 // Filters
-if (!empty($_GET['business_name'])) {
-    $query .= " AND businesses.name LIKE :business_name";
-    $params[':business_name'] = '%' . $_GET['business_name'] . '%';
-}
 
 if (!empty($_GET['country'])) {
     $query .= " AND businesses.country LIKE :country";
@@ -69,7 +65,7 @@ $businesses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $_SESSION['businesses'] = $businesses;
 
 // Redirect to the results page
-header("Location: ../../../frontend/Dashboard/resultspage.php");
+header("Location: ../../../frontend/Dashboard/search/resultspage.php");
 
 exit();
 ?>
